@@ -19,5 +19,12 @@ api = tweepy.API(auth)
 def get_tweets(twitter_handle):
 
     # return 200 tweets belonging to the given twitter handle
-    tweets = api.user_timeline(screen_name = twitter_handle, count = 200)
+    api_response = api.user_timeline(screen_name = twitter_handle, count = 200)
+    tweets = parse_tweets(api_response)
+    return tweets
+
+def parse_tweets(api_response):
+    tweets = []
+    for tweet in api_response:
+        tweets.append(tweet.text)
     return tweets
