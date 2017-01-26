@@ -5,12 +5,14 @@ import tweepy
 import json
 import re
 from tqdm import tqdm
-from stop_words import get_stop_words
+from nltk.corpus import stopwords
+from string import punctuation
+
+# generates stopwords
+customestopwords = set(stopwords.words('english') + list(punctuation))
 
 from analysis import alchemy
 
-# get english stopwords
-stop_words = get_stop_words('en')
 
 # twitter access tokens (security keys from the twitter application)
 access_token = "3228931192-dgwDS0IabNwy3ujynR8BMq0k9Mky6dp3qErmydr"
@@ -35,13 +37,18 @@ def get_tweets(twitter_handle):
     # tweets = parse_tweets(api_response)
     # return tweets
     tweets = []
-    for tweet in tqdm(tweepy.Cursor(api.user_timeline, screen_name=twitter_handle).items(20)):
-        tweets.append(tweet.text)
-    with open("tweet.json","w") as file:
-        json.dump(tweets, file, indent=4)
-    words = tweets_to_words(tweets)
+    try:
+        for tweet in tqdm(tweepy.Cursor(api.user_timeline, screen_name=twitter_handle).items(40)):
+            tweets.append(tweet.text)
+        with open("tweet.json","w") as file:
+            json.dump(tweets, file, indent=4)
+        words = tweets_to_words(tweets)
 
-    return words
+        return words
+    except tweepy.TweepError as e:
+        if e.response.status_code == 404:  # not found
+            return None
+
 
 # returns words of the tweet fetched by the api response and stores them in a list
 def parse_tweets(api_response):
@@ -66,9 +73,8 @@ def clean_text(words):
     # converts unicode characters to string
     string_words = [] # empty list of words
     for word in words:
-        if word[0].isdigit():
-            continue
-        elif word in stop_words:
-            continue
-        string_words.append(word.encode('utf-8').lower())
+        if word not in customestopwords and len(word)>2:
+            if not word.isdigit() and (not word.startswith('https')):
+                if not any(char.isdigit() for char in word):
+                    string_words.append(word.encode('utf-8').lower())
     return string_words
