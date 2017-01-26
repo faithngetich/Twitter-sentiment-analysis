@@ -3,6 +3,7 @@
 # python library that enables Python to communicate with Twitter  and use its API.
 import tweepy
 import json
+import re
 from tqdm import tqdm
 from stop_words import get_stop_words
 
@@ -33,9 +34,8 @@ def get_tweets(twitter_handle):
     # api_response = api.user_timeline(screen_name = twitter_handle, count = 200)
     # tweets = parse_tweets(api_response)
     # return tweets
-
     tweets = []
-    for tweet in tqdm(tweepy.Cursor(api.user_timeline, screen_name=twitter_handle).items(200)):
+    for tweet in tqdm(tweepy.Cursor(api.user_timeline, screen_name=twitter_handle).items(20)):
         tweets.append(tweet.text)
     with open("tweet.json","w") as file:
         json.dump(tweets, file, indent=4)
@@ -54,11 +54,10 @@ def parse_tweets(api_response):
 
 
 def tweets_to_words(tweets):
-    # cleans up tweets into words
-    import re
-
+    # cleans up tweets words from regular expression
     words = []
     for tweet in tweets:
+        # w removes unicode
         words += re.compile('\w+').findall(tweet)
     return clean_text(words)
 

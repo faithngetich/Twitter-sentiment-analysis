@@ -23,6 +23,4 @@ alchemy(' '.join(tweets_without_stopwords))
 word_freq = most_freq_words(tweets)
 
 # display the frequency of a word
-# display_word_freq(word_freq)
-
-# display the sentiment analysis
+display_word_freq(word_freq)

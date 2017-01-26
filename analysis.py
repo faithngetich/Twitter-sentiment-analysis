@@ -15,4 +15,9 @@ def alchemy(words):
     sadness = emotion['docEmotions']['sadness']
     disgust = emotion['docEmotions']['disgust']
 
-    print(sentiment_type, anger, fear, joy, sadness, disgust)
+    print('Your tweets are ', sentiment_type)
+    print('Anger ==> ', anger)
+    print('Fear ==> ', fear)
+    print('Joy ==> ', joy)
+    print('Sadness ==> ', sadness)
+    print('Disgust ==> ', disgust)
