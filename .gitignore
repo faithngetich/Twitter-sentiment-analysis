@@ -1,2 +1,4 @@
 venv/
 *.pyc
+tweet.json
+*.py~
