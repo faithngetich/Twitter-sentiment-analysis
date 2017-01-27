@@ -3,6 +3,8 @@
 # python library that enables Python to communicate with Twitter  and use its API.
 import tweepy
 import json
+import progressbar
+import time, sys
 import re
 from tqdm import tqdm
 from nltk.corpus import stopwords
@@ -37,9 +39,16 @@ def get_tweets(twitter_handle):
     # tweets = parse_tweets(api_response)
     # return tweets
     tweets = []
+    bar = progressbar.ProgressBar(widgets=['Fetching Tweets: ', progressbar.Bar(), ' (', progressbar.Timer(), ') ',], maxval=40)
     try:
-        for tweet in tqdm(tweepy.Cursor(api.user_timeline, screen_name=twitter_handle).items(40)):
+        count = 0
+        bar.start()
+        for tweet in tweepy.Cursor(api.user_timeline, screen_name=twitter_handle).items(40):
+            time.sleep(0.5)
+            count += 1
+            bar.update(count)
             tweets.append(tweet.text)
+        bar.finish()
         with open("tweet.json","w") as file:
             json.dump(tweets, file, indent=4)
         words = tweets_to_words(tweets)
@@ -48,6 +57,17 @@ def get_tweets(twitter_handle):
     except tweepy.TweepError as e:
         if e.response.status_code == 404:  # not found
             return None
+
+
+def progress_bar():
+
+    bar = progressbar.ProgressBar(widgets=[
+        'Fetching Tweets: ',
+        progressbar.Bar(),
+        ' (', progressbar.Timer(), ') ',
+    ])
+    for i in bar(range(40)):
+        time.sleep(0.5)
 
 
 # returns words of the tweet fetched by the api response and stores them in a list
