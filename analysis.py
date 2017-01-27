@@ -1,6 +1,7 @@
 # Add functionality to get sentiments
 from watson_developer_cloud import AlchemyLanguageV1
-from main import get_user_input
+from termcolor import colored as color
+# from main import get_user_input
 
 def alchemy(words):
     alchemy_language = AlchemyLanguageV1(api_key='a7f5da4c25eeea912cee000a9fbe17860c24e819')
@@ -21,7 +22,7 @@ def alchemy(words):
         print("")
         sentiment_table = PrettyTable(["SENTIMENT"])
         sentiment_table.add_row([sentiment_type])
-        print(sentiment_table)
+        print(color(sentiment_table, 'green'))
         print("")
         print("")
         print("")
@@ -32,4 +33,4 @@ def alchemy(words):
         alchemy_table.add_row(["Joy", joy])
         alchemy_table.add_row(["sadness", sadness])
         alchemy_table.add_row(["disgust", disgust])
-        print(alchemy_table)
+        print(color(alchemy_table, 'green'))

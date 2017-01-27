@@ -15,6 +15,7 @@ Options:
 import sys
 import cmd
 from docopt import docopt, DocoptExit
+from termcolor import colored as color
 
 from tweet import *
 from util import *
@@ -53,7 +54,12 @@ def docopt_cmd(func):
 
 class AnalyzerCmd (cmd.Cmd):
     intro = '''                 Twitter Sentiment Analysis\n
-               Type help to view list of commands\n'''
+                        list of commands\n
+        fetch <twitter_handle>   -   gets the twets for specified username\n
+        wordfrequency            -   Frequency of words in the tweets\n
+        sentiment                -   Alchemy analysis on the tweets\n\n 
+                                OR\n
+                Type help to view list of commands\n'''
     prompt = 'TWEET SENTIMENT ANALYSIS:> '
     file = None
 
@@ -70,7 +76,7 @@ class AnalyzerCmd (cmd.Cmd):
     @docopt_cmd
     def do_wordfrequency(self, args):
         """Usage: wordfrequency """
-        print(most_freq_words(tweets_to_words(self.tweets)))
+        print(color(most_freq_words(tweets_to_words(self.tweets)), 'yellow'))
 
     def do_home(self):
         pass
