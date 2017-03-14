@@ -35,3 +35,7 @@ def alchemy(words):
         alchemy_table.add_row(["disgust", disgust])
         print(color(alchemy_table, 'green'))
     return ' '
+
+
+def testing_this():
+    return None
