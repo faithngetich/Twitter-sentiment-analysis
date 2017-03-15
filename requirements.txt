@@ -9,3 +9,4 @@ nltk
 prettytable
 watson_developer_cloud
 termcolor
+stop-words
