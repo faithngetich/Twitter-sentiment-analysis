@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/faithngetich/Twitter-sentiment-analysis.svg?branch=master)](https://travis-ci.org/faithngetich/Twitter-sentiment-analysis)
+[![Coverage Status](https://coveralls.io/repos/github/faithngetich/Twitter-sentiment-analysis/badge.svg?branch=master)](https://coveralls.io/github/faithngetich/Twitter-sentiment-analysis?branch=master)
+
 # Twitter sentiment analysis
 __A Twitter sentiment analysis application. Andela Kenya Class XIV Boot Camp Project.__
 
