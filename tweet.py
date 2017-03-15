@@ -13,7 +13,7 @@ from string import punctuation
 
 # generates stopwords
 # customestopwords = set(stopwords.words('english') + list(punctuation))
-customestopwords = get_stop_words('en'
+customestopwords = get_stop_words('en')
 
 from analysis import alchemy
 
