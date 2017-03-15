@@ -7,4 +7,3 @@ install:
 script:
   - coverage run python /test/test.py
 after_success: coveralls
-cache: pip
