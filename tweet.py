@@ -7,11 +7,13 @@ import json
 import time, sys
 import re
 from tqdm import tqdm
-from nltk.corpus import stopwords
+from stop_words import get_stop_words
+# from nltk.corpus import stopwords
 from string import punctuation
 
 # generates stopwords
-customestopwords = set(stopwords.words('english') + list(punctuation))
+# customestopwords = set(stopwords.words('english') + list(punctuation))
+customestopwords = get_stop_words('en'
 
 from analysis import alchemy
 
