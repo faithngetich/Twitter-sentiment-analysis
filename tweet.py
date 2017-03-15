@@ -3,7 +3,7 @@
 # python library that enables Python to communicate with Twitter  and use its API.
 import tweepy
 import json
-import progressbar
+# import progressbar
 import time, sys
 import re
 from tqdm import tqdm
