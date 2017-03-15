@@ -1,6 +1,6 @@
 import unittest
 
-from tweet import *
+from tweet import clean_text, customestopwords
 
 
 class TwitterDataTestCase(unittest.TestCase):
