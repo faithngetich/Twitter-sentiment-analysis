@@ -36,32 +36,30 @@ Clone the repository to your local folder of your choice
 
    `$ git clone https://github.com/faithngetich/Twitter-sentiment-analysis.git`
 
-2. Open Git Bash
+3. Open Git Bash
 
-3.
-
-2. Install project dependencies via `pip`. It's recommended that you do this in a `virtualenv`
+4. Install project dependencies via `pip`. It's recommended that you do this in a `virtualenv`
 
     `$ pip install -r requirements.txt`
 
-4. Activate the virtual environment
+5. Activate the virtual environment
 
     `$ source venv\bib\activate`
 
-3. Run a tweet_cmd.py  file.
+6. Run a tweet_cmd.py  file.
 
     `$ python tweet_cmd.py -i`
 
-3. Enter this command.
+7. Enter this command.
 
     `$ fetch twitterhandle`
 
-3. Enter the frequency command.
+8. Enter the frequency command.
 
     `$ frequency`
 
 
-6. Enter the sentiment command.
+9. Enter the sentiment command.
 
       `$ sentiment`
 
